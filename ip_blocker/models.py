@@ -7,6 +7,9 @@ class BlockedIp(models.Model):
     address = models.CharField(max_length=39)
     reason = models.CharField(max_length=255)
 
+    def __str__(self) -> str:
+        return f"address {self.address} blocked for: {self.reason}"
+
     class Meta:
         db_table = "blocked_ip_addresses"
         verbose_name = "blocked IP"
