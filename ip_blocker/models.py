@@ -17,7 +17,8 @@ class BlockedIp(models.Model):
 
 
 def set_cache(sender, instance, **kwargs):
-    cache.set("blockedip:list", BlockedIp.objects.all())
+    blocked_ips = [i.address for i in BlockedIp.objects.all()]
+    cache.set("blockedip:list",blocked_ips)
 
 
 post_save.connect(set_cache, sender=BlockedIp)
